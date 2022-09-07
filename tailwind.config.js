@@ -2,7 +2,6 @@
 module.exports = {
   content: [
     "./resources/**/*.{edge,html,js,ts,tsx,jsx,vue}",
-    "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   presets: [],
   darkMode: 'media', // or 'class'
@@ -958,6 +957,5 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/line-clamp'),
-    require('tw-elements/dist/plugin')
   ],
 }
