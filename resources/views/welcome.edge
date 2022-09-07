@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdonisJS - A fully featured web framework for Node.js</title>
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+</head>
+
+<body>
+  <section>
+    <h1>Testing</h1>
+    <div x-data="{todos: [], userInput: ''}">
+      <form x-on:submit.prevent>
+        <input x-model="userInput" placeholder="Enter todo item" type="text" class="form-input">
+        <button type="button" class="btn-primary"
+        @click="if(userInput.trim().length) todos.push({name: userInput, completed: false, id: 0 }); userInput = ''">
+        Add</button>
+      </form>
+
+      <template x-for="todo in todos">
+        <div class="mt-2">
+          <input type="checkbox" x-model="todo.completed">
+          <span x-text="todo.name" x-bind></span>
+          <button @click="todos = todos.filter((currTodo)=>currTodo !== todo)" class="btn-primary text-xs px-2 py-1 ">x</button>
+        </div>
+      </template>
+      <button @click="todos = []" x-show="todos.length" class="btn-primary mt-3">Clear All</button>
+      <div class="mt-2">
+        <span x-text="todos.filter(todo => todo.completed).length"></span> completed |
+        <span x-text="todos.length"></span> todos
+      </div>
+    </div>
+  </section>
+
+
+</body>
+
+</html>
