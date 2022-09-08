@@ -1,0 +1,25 @@
+@layout('layouts/default')
+
+@section('content')
+  <section class="flex  justify-center items-center">
+    <h1 class="antialiased text-gray-800 font-semibold">TASK INDEX</h1>
+  </section>
+
+  <section>
+    <section class="lg:mx-60">
+      <form action="{{route('todo.store')}}" method="POST">
+        {{ csrfField() }}
+        <div>
+          <div class="flex justify-center space-x-1 bg-gray-100 shadow-lg p-8 w-full rounded-t-lg">
+            @!input.text({name: 'title', placeholder: 'Ada tugas pa kali ini?'})
+            <button class="btn-primary">ADD</button>
+          </div>
+        </div>
+        {{--  list card  --}}
+        <div class="py-4 px-4 space-y-1 bg-white rounded-b-lg">
+          @!checkbox({caption: 'Satu'})
+        </div>
+      </form>
+    </section>
+  </section>
+@endsection

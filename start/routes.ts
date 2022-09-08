@@ -23,3 +23,8 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
+
+Route.group(()=>{
+  Route.get('/', 'TodosController.index').as('todo.index')
+  Route.post('/store', 'TodosController.store').as('todo.store')
+}).prefix('/todo')
