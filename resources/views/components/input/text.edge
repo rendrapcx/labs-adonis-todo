@@ -1,1 +1,11 @@
-<input name="{{name}}" placeholder="{{placeholder}}" class="form-input rounded-lg w-full" type="text">
+<div class="flex flex-1 relative">
+    <input name="{{name}}" placeholder="{{placeholder}}"
+        class="form-input relative {{flashMessages.has('errors.title') ? 'border-red-500' : ''}} rounded-lg w-full"
+        type="text" />
+    @if(flashMessages.has('errors.title'))
+    <small
+        class="flex absolute -mt-4 right-1 bg-red-500 px-2 py-1 opacity-75 rounded-md shadow-md antialiased animate-bounce text-red-50">
+        {{ flashMessages.get('errors.title') }}
+    </small>
+    @endif
+</div>
