@@ -1,0 +1,42 @@
+<div x-data="{
+  visible: true,
+  timeout: 3000,
+  percent: 0,
+  interval: null,
+  close() {
+      this.visible = false;
+      clearInterval(this.interval)
+  },
+  init() {
+      setTimeout(() => {
+         this.visible = false;
+      }, this.timeout)
+      const startDate = Date.now();
+      const futureDate = Date.now() + this.timeout;
+      this.interval = setInterval(() => {
+          const date = Date.now();
+          this.percent = (date - startDate) * 100 / (futureDate - startDate);
+          if (this.percent >= 100) {
+              clearInterval(this.interval)
+          }
+      }, 30)
+  }
+}" x-show="visible"
+    class="absolute flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 top-10 pb-2 bg-emerald-500 opacity-90 antialiased text-white rounded-lg z-10">
+    <div class="flex justify-between items-center bg-emerald-600">
+        <div class="font-semibold py-0 px-2 mb-2 ">{{title || 'Notifications'}}</div>
+        <button @click="close" class="rounded-full pr-2 hover:bg-black/10 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <div class="text-sm py-2 px-4">
+        {{ description || 'Data has been changed!' }}
+    </div>
+    <!-- Progress -->
+    <div>
+        <div class="absolute rounded-b-lg left-0 bottom-0 right-0 h-[6px] bg-emerald-800" :style="{'width': `${percent}%`}"></div>
+    </div>
+</div>

@@ -26,5 +26,8 @@ Route.get('/', async ({ view }) => {
 
 Route.group(()=>{
   Route.get('/', 'TodosController.index').as('todo.index')
-  Route.post('/store', 'TodosController.store').as('todo.store')
+  Route.post('/', 'TodosController.store').as('todo.store')
+  Route.patch('/:id', 'TodosController.update').as('todo.update')
+  // Route.put('/:id', 'TodosController.update').as('todo.update')
+  Route.delete('/:id', 'TodosController.destroy').as('todo.destroy')
 }).prefix('/todo')
