@@ -1,22 +1,10 @@
-@layout('layouts/default')
+@layout('layouts/welcome')
 
 @section('content')
-
 <section class="mx-60">
-  <div>
-    <div class="flex justify-center space-x-1 bg-gray-100 shadow-lg p-8 w-full rounded-t-lg">
-      <input class="rounded-lg w-full" type="text">
-      <button class="btn-primary">ADD</button>
-    </div>
-  </div>
-
-  {{--  list card  --}}  
-      <div class="py-4 px-4 space-y-1 bg-white">
-          @!checkbox({caption: 'Satu'})
-          @!checkbox({caption: 'Dua'})
-          @!checkbox({caption: 'Tiga'})
-          @!checkbox({caption: 'sdddddddddsf'})
-          @!checkbox({caption: 'efefweer'})
-      </div>
+  hero
+</section>
+<section class="mx-60">
+footer
 </section>
 @endsection

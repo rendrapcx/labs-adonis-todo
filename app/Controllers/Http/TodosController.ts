@@ -4,8 +4,8 @@ import Todo from 'App/Models/Todo'
 
 export default class TodosController {
     public async index({view}:HttpContextContract){
-        const todos = await Todo.all() 
-        return view.render('todo/index', {todos})
+        const data = await Todo.all() 
+        return view.render('todo/index', {data})
     }
 
     public async store({request, response, session}:HttpContextContract){
@@ -31,17 +31,57 @@ export default class TodosController {
     }
 
     public async update({request, response, session, params}:HttpContextContract){
-        const todo = await Todo.findOrFail(params.id)
+        const data = await Todo.findOrFail(params.id)
 
-        todo.isCompleted = !!request.input('completed')
-        await todo.save()
+        data.isCompleted = !!request.input('completed')
+
+        await data.save()
+        
         session.flash('notification', 'Todo Updated!')
+        
         return response.redirect().back()
     }
 
+    public async editShow({view, params}:HttpContextContract){
+        const data = await Todo.findOrFail(params.id)
+
+        return view.render('todo/edit', {data})
+    }
+
+    public async updateTitle({response, request, session, params}:HttpContextContract){
+        const data = await Todo.findOrFail(params.id)
+        // data.title = request.input('title')
+        // data.isCompleted = !!request.input('completed')
+
+        const {title, completed} = request.only(['title', 'completed'])
+        data.title = title
+        data.isCompleted = !!completed
+        const validationSchema = schema.create({
+            title: schema.string({ trim: true }, [rules.maxLength(10)])
+        })
+
+        await request.validate({
+            schema: validationSchema,
+            messages: {
+                'title.required': 'Silakan isi dulu mas...',
+                'title.maxLength': 'kepanjangan kuys...'
+            }
+        })
+
+        await data.save()
+        // await data.save({schema: validateData})
+
+        session.flash('notification', 'todo Updated!')
+
+        // return response.redirect().toRoute('todo.index')
+        return response.redirect('/todo')
+    }
+
+
+
     public async destroy({ response, session, params}:HttpContextContract){
-        const todo = await Todo.findOrFail(params.id)
-        await todo.delete()
+        const data = await Todo.findOrFail(params.id)
+        await data.delete()
         session.flash('notification', 'todo has been remove')
         return response.redirect().back()
     }

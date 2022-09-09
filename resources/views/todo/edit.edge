@@ -1,0 +1,47 @@
+@layout('layouts/default')
+
+@section('content')
+<section>
+    <h1>EDIT</h1>
+</section>
+<section>
+    {{--  {{ inspect(data) }}  --}}
+    {{--  <small>{{data.id}}</small>
+    <small>{{data.title}}</small>
+    <small>{{data.isCompleted}}</small>  --}}
+    {{--  @set('title', data.title)  --}}
+    @set('isCompleted', data.isCompleted)
+    @set('action', route('todo.update.title', { id: data.id}, { qs: { _method: 'PUT' }}))
+
+    <form action="{{action}}" method="POST">
+        {{ csrfField() }}
+            @!input.text({
+            placeholder: 'Add Title',
+            name: 'title',
+            value: flashMessages.get('title') ?? data?.title ?? '',
+            errors: flashMessages.get('errors.title') ?? '',
+        })
+
+        <div x-data="{
+                        checked: {{ !!isCompleted }}, 
+                        id: $id('id'),
+                    }" 
+            class="flex item items-center space-x-2">
+            
+            <input :id="id" name="completed" x-model="checked" type="checkbox" class="form-checkbox text-red-500"
+                class="items-center rounded" />
+            <label :for="id" class="line-clamp-2 align-middle antialiased font-semibold cursor-pointer"
+                :class="{'italic line-through' : checked == true}">            
+                <div :class="checked ? 'asdasd: 'eeeee'">
+                    <span x-text="checked"></span>
+                </div>
+            </label>
+        </div>
+
+        <div class="flex justify-center items-center space-x-1 mt-8">
+            <button class="btn-primary" type="submit">Save</button>
+            <a class="btn-primary" href="{{route('todo.index')}}">Cancel</a>
+        </div>
+    </form>
+</section>
+@endsection
