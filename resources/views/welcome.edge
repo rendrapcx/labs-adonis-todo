@@ -29,9 +29,15 @@
     </div>
   </div>
 
-  <div>
-    {{--  @!svg({icon: 'user-circle'})  --}}
-    {{--  @!svg({icon: 'user'})  --}}
+  <div class="flex">
+    @!svg({icon: 'user'})
+    @!svg({icon: 'logout'})
+    @!svg({icon: 'user-circle'})
+    @!svg({icon: 'home'})
+    @!svg({icon: 'home-modern'})
+    @!svg({icon: 'user-group'})
+    @!svg({icon: 'eye'})
+    @!svg({icon: 'eye-slash'})
   </div>
 
   <div>
@@ -43,4 +49,13 @@
   </div>
 </section>
 
+
+<small class="absolute align-middle antialiased top-1 right-1 bg-red-800 text-white rounded-full">
+  {{--  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+    <path fill-rule="evenodd"
+      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z"
+      clip-rule="evenodd" />
+  </svg>  --}}
+  @!svg({icon: 'exlamation-circle'})
+</small>
 @endsection
