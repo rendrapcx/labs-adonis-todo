@@ -1,0 +1,12 @@
+@set('img', img)
+@set('round', round)
+@set('size', size)
+
+@if(img === 'me')
+{{--  me  --}}
+<img src="{{ asset('assets/images/me.jpg') }}" alt="rendrapcx"
+    class="aspect-square {{ size || 'w-32'}} object-cover 
+    {{ round == 'full' ? 'rounded-full' :round == 'lg' ? 'rounded-lg' : '' }} ">
+</div>
+@endif
+

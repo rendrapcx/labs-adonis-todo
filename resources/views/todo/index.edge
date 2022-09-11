@@ -3,7 +3,7 @@
 @section('content')
 {{--  <section>
   <a href="{{route('todo.edit', {id: '30'})}}">coba</a>
-</section>  --}}
+</section> --}}
 
 <section>
   <section class="justify-center lg:mx-60">
@@ -20,16 +20,17 @@
     {{--  notification messages  --}}
     @if(flashMessages.has('notification'))
     @set('notification', flashMessages.get('notification'))
-      <div class="flex justify-center md:justify-end">
-        @!notifications({description: notification})
-      </div>
+    <div class="flex justify-center md:justify-end">
+      @!notifications({description: notification})
+    </div>
     {{--  <div class="flex flex-1 justify-center items-center px-4 py-2 bg-gray-200">
       <p class="text-gray-900 antialiased font-semibold">{{flashMessages.get('notification')}} x</p>
     </div> --}}
     @endif
 
     {{--  list card  --}}
-    <div class="py-4 px-4 bg-white rounded-b-lg">
+    <div
+      class="py-4 px-4 bg-white rounded-b-lg h-[40rem] scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100">
       <div class="space-y-1">
         @each(todo in data)
 
@@ -42,7 +43,7 @@
         @set('actUpdate', route('todo.update', { id: todo.id}, { qs: { _method: 'PATCH' }}))
         @set('actDelete', route('todo.destroy', { id: todo.id}, { qs: { _method: 'DELETE' }}))
         @set('actEdit', route('todo.edit.show', { id: todo.id}, { qs: { _method: 'GET' }}))
-        {{--  @set('actEdit', route('todo.edit', { id: todo.id}, { qs: { _method: 'POST' }}))  --}}
+        {{--  @set('actEdit', route('todo.edit', { id: todo.id}, { qs: { _method: 'POST' }})) --}}
 
 
         {{--  @endif  --}}
@@ -70,7 +71,7 @@
         </button>
         </form> --}}
 
-      
+
 
 
         @else
