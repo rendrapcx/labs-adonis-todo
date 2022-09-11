@@ -1,0 +1,35 @@
+{{--  //TODO >> extract to >> 1. tabs header, 2. tabs content, 3. tabs data for header and content  --}}
+
+
+<section>
+    <div x-data="{
+        activeTab: 'Home',
+        tabs: [
+          { id: 1, label: 'Home', link: '#'},
+          { id: 2, label: 'Teams', link: '#'},
+          { id: 3, label: 'Projects', link: '#'},
+        ]
+    }">
+        <div class="w-full h-10 grid grid-cols-3 rounded-t-lg border-b-2 border-b-white">
+            <template x-for="(tab, index) in tabs">
+                <button class="hover:bg-slate-400 hover:text-gray-200 rounded-t-lg " @click="activeTab = tab.label"
+                    x-bind:class="{ 'bg-gray-600 text-white': activeTab == tab.label }" x-text="tab.label"></button>
+            </template>
+        </div>
+        <div x-show="activeTab === 'Home'">
+            <div class="m-8">
+                @!avatar({img: 'me', round: 'full'})
+            </div>
+        </div>
+        <div x-show="activeTab === 'Teams'">
+            <div class="m-8">
+                Teams
+            </div>
+        </div>
+        <div x-show="activeTab === 'Projects'">
+            <div class="m-8">
+                Projects
+            </div>
+        </div>
+    </div>
+</section>

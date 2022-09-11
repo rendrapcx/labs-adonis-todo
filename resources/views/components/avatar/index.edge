@@ -1,3 +1,5 @@
+{{--  //TODO: Add more static avatar images  --}}
+
 @set('img', img)
 @set('round', round)
 @set('size', size)
@@ -6,7 +8,6 @@
 {{--  me  --}}
 <img src="{{ asset('assets/images/me.jpg') }}" alt="rendrapcx"
     class="aspect-square {{ size || 'w-32'}} object-cover 
-    {{ round == 'full' ? 'rounded-full' :round == 'lg' ? 'rounded-lg' : '' }} ">
-</div>
+    {{ round == 'full' ? 'rounded-full' :round == 'lg' ? 'rounded-lg' : '' }} " />
 @endif
 
