@@ -8,7 +8,12 @@ export default class Todo extends BaseModel {
   @column()
   public title: string
 
-  @column()
+  // @column({ serialize: Boolean })
+  @column({
+    serialize: (value?: Number) => {
+      return Boolean(value)
+    },
+  })
   public isCompleted: boolean
 
   @column.dateTime({ autoCreate: true })

@@ -1,58 +1,59 @@
 @layout('layouts/auth')
 
 @section('content')
-  <section class="flex justify-center items-center">
-    <h1 class="uppercase font-semibold text-slate-700 antialiased">register</h1>
-  </section>
+<section class="flex justify-center items-center">
+  <h1 class="uppercase font-semibold text-slate-700 antialiased">register</h1>
+</section>
 
-  <section>
-    <div>
-        <form action="/" method="POST">
-            {{ csrfField() }}
-            <div class="p-4 bg-gray-500 bg-opacity-10 rounded shadow">
-                <div>
-                    @!input.textAlt({
-                        label:          'Username',
-                        type:           'text',
-                        name:           'username',
-                        placeholder:    'Add a username',
-                        value:          flashMessages.get('username') ?? data?.username ?? '',
-                        errors:         flashMessages.get('errors.username') ?? '',
-                    })
-                    @!input.textAlt({
-                        label:          'Email',
-                        type:           'email',
-                        name:           'email',
-                        placeholder:    'Add a email',
-                        value:          flashMessages.get('email') ?? data?.email ?? '',
-                        errors:         flashMessages.get('errors.email') ?? '',
-                    })
-                    @!input.textAlt({
-                        label:          'Password',
-                        type:           'password',
-                        name:           'password',
-                        placeholder:    'Add a password',
-                        value:          flashMessages.get('password') ?? data?.password ?? '',
-                        errors:         flashMessages.get('errors.password') ?? '',
-                    })
-                    @!input.textAlt({
-                        label:          'Confirm Password',
-                        type:           'password',
-                        name:           'confirm_password',
-                        placeholder:    'Confirm a password',
-                        value:          flashMessages.get('confirm_password') ?? data?.confirm_password ?? '',
-                        errors:         flashMessages.get('errors.confirm_password') ?? '',
-                    })
-                </div>
-                <div class="flex justify-center items-center space-x-8 mt-8 mb-2">
-                    <a href="{{route('todo.index')}}" type="submit" class="btn-primary">Sign up</a>
-                    <span>Already have an account? 
-                        <a href="{{route('auth.login.show')}}" class="antialiased font-semibold text-indigo-700 hover:text-indigo-500">Signin here</a>
-                    </span>
-                </div>
-            </div>
-        </form>
-    </div>
+<section>
+  <div class="flex justify-center">
+    <form action="/" method="POST">
+      {{ csrfField() }}
+      <div class="p-4 bg-gray-500 bg-opacity-10 rounded shadow">
+        <div>
+          @!input.textAlt({
+          label: 'Username',
+          type: 'text',
+          name: 'username',
+          placeholder: 'Add a username',
+          value: flashMessages.get('username') ?? data?.username ?? '',
+          errors: flashMessages.get('errors.username') ?? '',
+          })
+          @!input.textAlt({
+          label: 'Email',
+          type: 'email',
+          name: 'email',
+          placeholder: 'Add a email',
+          value: flashMessages.get('email') ?? data?.email ?? '',
+          errors: flashMessages.get('errors.email') ?? '',
+          })
+          @!input.textAlt({
+          label: 'Password',
+          type: 'password',
+          name: 'password',
+          placeholder: 'Add a password',
+          value: flashMessages.get('password') ?? data?.password ?? '',
+          errors: flashMessages.get('errors.password') ?? '',
+          })
+          @!input.textAlt({
+          label: 'Confirm Password',
+          type: 'password',
+          name: 'confirm_password',
+          placeholder: 'Confirm a password',
+          value: flashMessages.get('confirm_password') ?? data?.confirm_password ?? '',
+          errors: flashMessages.get('errors.confirm_password') ?? '',
+          })
+        </div>
+        <div class="flex justify-center items-center space-x-8 mt-8 mb-2">
+          <a href="{{route('todo.index')}}" type="submit" class="btn-primary">Sign up</a>
+          <span>Already have an account?
+            <a href="{{route('auth.login.show')}}"
+              class="antialiased font-semibold text-indigo-700 hover:text-indigo-500">Signin here</a>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
 
-  </section>
+</section>
 @endsection

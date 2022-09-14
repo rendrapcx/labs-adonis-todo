@@ -32,6 +32,9 @@ Route.group(() => {
 
 Route.group(() => {
   Route.get('/', 'TodosController.index').as('todo.index')
+  Route.get('/completed', 'TodosController.completed').as('todo.completed')
+  Route.get('/onhold', 'TodosController.onHold').as('todo.onhold')
+  // Route.get('/sort', 'TodosController.index').as('todo.sort')
   Route.post('/', 'TodosController.store').as('todo.store')
   Route.patch('/:id', 'TodosController.update').as('todo.update')
   Route.get('/:id', 'TodosController.editShow').as('todo.edit.show')

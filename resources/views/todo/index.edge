@@ -26,22 +26,31 @@
     @endif
 
     {{--  Tabs Filtered  --}}
-    {{--  <div class="bg-white">
-      <div class="text-sm antialiased text-gray-900 py-2 grid grid-flow-col-dense divide-x divide-gray-800 place-content-center bg-white">
-        <a href="#" class="hover:bg-gray-400 hover:text-white px-2">All</a>
-        <a href="#" class="hover:bg-gray-400 hover:text-white px-2">Completed</a>
-        <a href="#" class="hover:bg-gray-400 hover:text-white px-2">Archived</a>
-      </div>
-    </div>  --}}
 
-    {{--  //TODO: Filter / Sort by last, and completed goes to down  --}}
+    <div x-data="{
+      activeTab: $persist('All'),
+      tabs: [
+        {{--  { id: 1, label: 'Sort', href:   '{{route('todo.sort'  )}}' },  --}}
+        { id: 2, label: 'All',  href:   '{{route('todo.index' )}}'     },
+        { id: 3, label: 'Hold', href:   '{{route('todo.onhold')}}'    },
+        { id: 4, label: 'Done', href:   '{{route('todo.completed')}}' },
+      ]
+  }">
+      <div class="text-sm antialiased text-gray-900 py-1 grid grid-flow-col-dense place-content-center bg-white">
+        <template x-for="(tab, index) in tabs">
+          <a :href="tab.href" class="hover:bg-gray-400 hover:text-white px-4 rounded" @click="activeTab = tab.label"
+            x-bind:class="{ 'bg-gray-600 text-white': activeTab == tab.label }"><small x-text="tab.label"></small></a>
+        </template>
+      </div>
+    </div>
+    </div>
+
     {{--  list card  --}}
     <div class="relative">
       <div
         class="bg-white max-h-[40rem] overflow-auto will-change-scroll overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-100">
         <div class="space-y-1 py-4 px-4">
           @each(todo in data)
-
           @set('title', todo.title)
           @set('isCompleted', todo.isCompleted)
           @set('actUpdate', route('todo.update', { id: todo.id}, { qs: { _method: 'PATCH' }}))
